@@ -5,21 +5,38 @@ if !empty(globpath(&rtp, '/usr/share/vim/google/google.vim'))
   source /usr/share/vim/google/google.vim
 endif
 
-""" Don't need custom colors because we're using solarized in iterm
-" try
-"  colorscheme industry
-"catch
-"  colorscheme darkblue
-"endtry
+""" I like darker colors
+try
+  colorscheme industry
+catch
+  colorscheme darkblue
+endtry
 
 set mouse=nicr """ Enamble mouse scroll within vim (hold option to select text)
 
 """ Cause the bottom of the screen to contain more useful information
 set laststatus=2 ruler showcmd
+" display filename
 set statusline=%f
+" right align everything after this
+set statusline+=%=
+" show the line and column number
+set statusline+=L:\ %l\ C:\ %c\ \ 
 
 """ Have vim be helpful with indentation, but not *too* clever
 set autoindent
+" show existing tabs with 2 spaces width
+set tabstop=2
+" when indenting with '>', use 2 spaces width
+set shiftwidth=2
+" On pressing tab, insert spaces instead
+set expandtab
+
+""" vim keeps at least this many lines above and below the cursor at all times
+set scrolloff=0
+
+""" I like templating in C++, so lets match <> in addition to () [] and {}
+set matchpairs+=<:>
 
 "Have vim jump to the last position when reopening a file
 if has("autocmd")
