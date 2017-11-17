@@ -61,6 +61,9 @@ set listchars=tab:T>
 """ Hides abandoned buffers (rather than releasing their memory)
 set hidden
 
+""" Auto fold on indentation
+set foldmethod=indent
+
 """ Define a function which aliases commands (without adding them to tab completion)
 fun! SetupCommandAlias(from, to)
   exec 'cnoreabbrev <expr> '.a:from
