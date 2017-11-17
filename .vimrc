@@ -1,16 +1,12 @@
 " Enable modern Vim features not compatible with Vi spec.
 set nocompatible
-" If it exists, use the 'google' package (see http://go/vim/packages).
-if !empty(globpath(&rtp, '/usr/share/vim/google/google.vim'))
-  source /usr/share/vim/google/google.vim
-endif
 
 """ I like darker colors
-try
-  colorscheme industry
-catch
-  colorscheme darkblue
-endtry
+""" try
+"""   colorscheme industry
+""" catch
+"""   colorscheme darkblue
+""" endtry
 
 set mouse=nicr """ Enamble mouse scroll within vim (hold option to select text)
 
@@ -53,10 +49,17 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
+""" Have vim show trailing spaces in red, including
+""" when opening a new buffer, but does not show it while in inserting it.
+" highlight ExtraWhitespace ctermbg=red guibg=red
+" match ExtraWhitespace /\s\+$/
 """ Display tabs in red with a T and trailing '>' characters (I don't like tabs)
-highlight SpecialKey ctermfg=1
+highlight ExtraWhitespace ctermfg=1
 set list
 set listchars=tab:T>
+
+""" Hides abandoned buffers (rather than releasing their memory)
+set hidden
 
 """ Define a function which aliases commands (without adding them to tab completion)
 fun! SetupCommandAlias(from, to)
@@ -77,6 +80,11 @@ call SetupCommandAlias("trimws", "%s/\\\\s\\\\+$//e")
 """ The following will swap the current and next argument in an argument list
 """ TODO(msheely) Implement this
 """ call SetupCommandAlias("swa", "")
+
+""" Clear most registers
+call SetupCommandAlias("regclear", "call ClearRegisters()")
+call SetupCommandAlias("clearreg", "call ClearRegisters()")
+call SetupCommandAlias("creg", "call ClearRegisters()")
 
 
 """ All of your plugins must be added before the following line.
