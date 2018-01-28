@@ -1,12 +1,7 @@
+source ~/configs/.vim/esoteric-mappings.vim
+source ~/configs/.vim/msheely-scripts.vim
 " Enable modern Vim features not compatible with Vi spec.
 set nocompatible
-
-""" I like darker colors
-""" try
-"""   colorscheme industry
-""" catch
-"""   colorscheme darkblue
-""" endtry
 
 set mouse=nicr """ Enamble mouse scroll within vim (hold option to select text)
 
