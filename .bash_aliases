@@ -1,4 +1,5 @@
 # address common typos
+alias emacs=vi
 alias clera=clear
 alias claer=clear
 alias xit=exit
