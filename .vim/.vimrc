@@ -26,6 +26,9 @@ set expandtab
 """ vim keeps at least this many lines above and below the cursor at all times
 set scrolloff=0
 
+" Disable error bell.
+set noeb vb t_vb=
+
 """ I like templating in C++, so lets match <> in addition to () [] and {}
 set matchpairs+=<:>
 
