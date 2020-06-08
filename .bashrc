@@ -6,7 +6,6 @@ case $- in
       *) return;;
 esac
 
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -34,12 +33,16 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[0;37m\]\h\[\033[0m\]:\[\033[0;36m\]\w\[\033[0m\]\n\[\033[0;31m\]\@\[\033[0m\] \[\033[0;32m\]\u\[\033[0m\]$ '
+    PS1='\[\033[0;37m\]msheely.mtv.corp.google.com\[\033[0m\]:\[\033[0;36m\]\w\[\033[0m\]\n\[\033[0;31m\]\@\[\033[0m\] \[\033[0;32m\]\u\[\033[0m\]$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 unset color_prompt force_color_prompt
+
+# Set vim mode so you can use escape to enter vim mode on the command line
+# Also <esc>v will launch a vim editor with a temporary file that, when saved
+# executes the containing commands
+set -o vi
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -49,6 +52,14 @@ xterm*|rxvt*)
 *)
     ;;
 esac
+
+TERM=xterm-256color
+COLORTERM=gnome-terminal
+# Directory of log files of blaze-bin commands under the name
+# /usr/local/google/tmp/binaryname.workstation.date
+LOGDIR=/usr/local/google/tmp
+# These can be cleaned out by running sudo /usr/lib/crudd/recreate_ulgt.sh
+# (or my copy at ~/Documents/Code/shell/clear_logs.sh)
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -69,13 +80,20 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
 export __GL_SHADER_DISK_CACHE_PATH=$XDG_CACHE_HOME
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+mkdir_and_cd()
+{
+  mkdir "$1" && cd "$1"
+}
 
+# Alias definitions.
 if [ -f ~/configs/.bash_aliases ]; then
     . ~/configs/.bash_aliases
+fi
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+if [ -f ~/configs/.bash_clipbord ]; then
+    . ~/configs/.bash_clipboard
 fi
 
 # enable programmable completion features (you don't need to enable

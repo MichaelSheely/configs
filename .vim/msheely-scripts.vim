@@ -117,8 +117,6 @@ function! RenumberBuffers()
   q
 endfunction
 
-""" void TrawlerLookup(, thing);
-
 """ There must be another argument after this
 function! SwapArgs()
   " go back until we hit either a left paren or a comma
