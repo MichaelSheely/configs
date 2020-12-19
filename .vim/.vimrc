@@ -20,6 +20,8 @@ set autoindent
 set tabstop=2
 " when indenting with '>', use 2 spaces width
 set shiftwidth=2
+" 80 char limit
+set textwidth=80
 " On pressing tab, insert spaces instead
 set expandtab
 
