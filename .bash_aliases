@@ -11,4 +11,5 @@ alias sl=ls
 alias mkcdir=mkdir_and_cd
 alias dirsize='du -hs'
 alias xclip="xclip -selection c"
-
+# google has ruined me forever
+alias g4=git
