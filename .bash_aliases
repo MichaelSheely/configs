@@ -11,4 +11,6 @@ alias sl=ls
 alias mkcdir=mkdir_and_cd
 alias dirsize='du -hs'
 alias xclip="xclip -selection c"
+# reminders
+alias irc='echo use \`irssi\`'
 
