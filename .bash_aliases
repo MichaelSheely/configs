@@ -14,3 +14,8 @@ alias xclip="xclip -selection c"
 # reminders
 alias irc='echo use \`irssi\`'
 
+if ! command -v g4 &> /dev/null
+then
+    # google has ruined me forever
+    alias g4=git
+fi

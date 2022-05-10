@@ -1,15 +1,18 @@
 """ Function to switch between a header and implementation file
 function! HeaderImplSwitch()
-  let associated_file=s:GetAssociatedFileName()
-  if filereadable(associated_file)
-    exec "edit ".associated_file
+  let associated_file_cc=s:GetAssociatedFileNameCC()
+  let associated_file_cpp=s:GetAssociatedFileNameCPP()
+  if filereadable(associated_file_cc)
+    exec "edit ".associated_file_cc
+  elseif filereadable(associated_file_cpp)
+    exec "edit ".associated_file_cpp
   else
-    echo "Cannot find".associated_file
+    echo "Cannot find".associated_file_cc."nor".associated_file_cpp
   endif
 endfunction
 
 """ Get the name of the associated file
-function! s:GetAssociatedFileName()
+function! s:GetAssociatedFileNameCC()
   if (expand("%:e") == "cc")
     return expand("%:p:r").".h"
   endif
@@ -18,6 +21,18 @@ function! s:GetAssociatedFileName()
   endif
   return ""
 endfunction
+
+""" Get the name of the associated file
+function! s:GetAssociatedFileNameCPP()
+  if (expand("%:e") == "cpp")
+    return expand("%:p:r").".h"
+  endif
+  if (expand("%:e") == "h")
+    return expand("%:p:r").".cpp"
+  endif
+  return ""
+endfunction
+
 
 """ Get the directory of the current file
 function! OpenBuildFile()
