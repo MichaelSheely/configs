@@ -18,4 +18,6 @@ if ! command -v g4 &> /dev/null
 then
     # google has ruined me forever
     alias g4=git
+    alias xlock=/usr/share/goobuntu-desktop-files/xsecurelock.sh
+    alias xsecurelock='echo use `xlock` instead'
 fi
