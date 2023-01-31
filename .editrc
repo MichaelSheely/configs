@@ -1,0 +1,7 @@
+# Vim-like bindings
+bind -v
+# Re-enable tab-completion
+bind \\t rl_complete
+# Ctrl-R Reverse History Search
+bind "^R" em-inc-search-prev
+
